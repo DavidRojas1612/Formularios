@@ -1,0 +1,105 @@
+<div class="container">
+  <div class="form">
+    <h1>Formulario
+      <small>data</small>
+    </h1>
+    <form [formGroup]="forma" (ngSubmit)="guardar()">
+      <div formGroupName="nombrecompleto">
+        <div class="form-group" [ngClass]="{'form-danger': (forma.controls['nombrecompleto'].controls['nombre'].errors?.required || forma.controls['nombrecompleto'].controls['nombre'].errors?.minlength) && forma.controls['nombrecompleto'].controls['nombre'].touched}">
+          <label class="label-f" for="nombre">Nombre</label>
+          <input class="input-f" type="text" placeholder="Nombre" formControlName="nombre">
+          <div class="message">
+            <span class="ms-alert" *ngIf="forma.controls['nombrecompleto'].controls['nombre'].errors?.required && forma.controls['nombrecompleto'].controls['nombre'].touched">
+              Este campo es requerido
+            </span>
+            <span class="ms-alert" *ngIf="forma.controls['nombrecompleto'].controls['nombre'].errors?.minlength">
+              Por lo menos {{forma.controls['nombrecompleto'].controls['nombre'].errors.minlength.requiredLength}} caracteres
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group" [ngClass]="{'form-danger': forma.controls['nombrecompleto'].controls['apellido'].errors?.required && forma.controls['nombrecompleto'].controls['apellido'].touched}">
+          <label class="label-f" for="apellido">Apellido</label>
+          <input class="input-f" type="text" id="apellido" placeholder="Apellido" formControlName="apellido">
+          <div class="message">
+            <span class="ms-alert" *ngIf="forma.controls['nombrecompleto'].controls['apellido'].errors?.required && forma.controls['nombrecompleto'].controls['apellido'].touched">
+              Este campo es requerido
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" [ngClass]="{'form-danger': (forma.controls['username'].errors?.required || forma.controls['username'].status === 'INVALID' )&& forma.controls['username'].touched}">
+        <label class="label-f" for="apellido">Username</label>
+        <input class="input-f" type="text"  placeholder="Username" formControlName="username">
+        <div class="message">
+          <span class="ms-alert" *ngIf="forma.controls['username'].errors?.required && forma.controls['username'].touched">
+            Este campo es requerido,
+          </span>
+          <span class="ms-alert" *ngIf="forma.controls['username'].status === 'PENDING'">
+              Validando campo...
+          </span>
+          <span class="ms-alert" *ngIf="forma.controls['username'].status === 'INVALID' && (forma.controls['username'].value.length > 0)">
+              El username {{forma.controls['username'].value}} no se encuentra disponible
+          </span>
+        </div>
+      </div>
+    
+      <div class="form-group" [ngClass]="{'form-danger': (forma.controls['correo'].errors?.required || forma.controls['correo'].errors?.pattern) && forma.controls['correo'].touched}">
+        <label class="label-f" for="corre">Correo</label>
+        <input class="input-f" type="email" id="correo" placeholder="Correo electronico" formControlName="correo">
+        <div class="message">
+          <span class="ms-alert" *ngIf="forma.controls['correo'].errors?.required && forma.controls['correo'].touched">
+            Este campo es requerido
+          </span>
+          <span class="ms-alert" *ngIf="forma.controls['correo'].errors?.pattern">
+            El campo no tiene formato de correcto
+          </span>
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'form-danger': (forma.controls['contraseña'].errors?.required || forma.controls['contraseña'].errors?.pattern )&& forma.controls['contraseña'].touched}">
+        <label class="label-f" for="apellido">Contraseña</label>
+        <input class="input-f" type="password" placeholder="Contraseña" formControlName="contraseña">
+        <div class="message">
+          <span class="ms-alert" *ngIf="forma.controls['contraseña'].errors?.required && forma.controls['contraseña'].touched">
+            Este campo es requerido
+          </span>
+          <span class="ms-alert" *ngIf="forma.controls['contraseña'].errors?.pattern">
+              Contraseña invalida. La contraseña debe tener al menos 6 caracteres y contener un número.
+          </span>
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'form-danger': (forma.controls['confcontraseña'].errors?.required || forma.controls['confcontraseña'].errors?.notconfirm ) && forma.controls['confcontraseña'].touched}">
+        <label class="label-f" for="apellido">Confirmar contraseña</label>
+        <input class="input-f" type="password" placeholder="Contraseña" formControlName="confcontraseña">
+        <div class="message">
+          <span class="ms-alert" *ngIf="forma.controls['confcontraseña'].errors?.required && forma.controls['confcontraseña'].touched">
+            Este campo es requerido, 
+          </span>
+          <span class="ms-alert" *ngIf="forma.controls['confcontraseña'].errors?.notconfirm">
+             Las contraseñas no coinciden
+          </span>
+        </div>
+      </div> 
+
+      <div class="form-group" formArrayName="pasatiempos">
+        <label class="label-f" for="">Pasatiempos</label>
+        <input *ngFor="let pasatiempos of forma.controls['pasatiempos'].controls; let i = index" 
+        [ngClass]="{'linel': margin }"
+                type="text" 
+                class="input-f " 
+                placeholder="Nuevo Pasatiempos"  
+                [formControlName]="i">
+        <button class="button-f line" type="button" (click)="nuevo()">Nuevo</button>
+      </div>
+
+      <div class="form-group">
+        <button class="button-f" type="submit" [disabled]="!forma.valid">Guardar</button>
+      </div>
+    </form>
+    {{forma.valid}}
+    <br>
+    {{forma.controls['username'].status}}
+    <p><strong>Nota: </strong> para que el 'username' no sea invalid, probar con petro...</p>
+  </div>
+</div>

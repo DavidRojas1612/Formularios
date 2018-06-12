@@ -1,1 +1,95 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+
+
+body{
+    
+    font-family: 'Lato', sans-serif;
+}
+
+
+.ng-invalid.ng-touched:not(form):not(div){
+    border-left: 5px solid #a94442;
+}
+
+.message{
+    transform: translate(21%);    
+}
+
+.form-danger{
+    color: #a94442;
+}
+
+.ms-alert{
+    font-size: 14px;
+}
+
+button:disabled,
+button[disabled]{
+  border: 1.5px solid rgb(65, 120, 156);
+  background-color: rgb(124, 167, 196);
+  color: #FFF;
+}
+
+
+
+.container{
+    display:inline-table;
+    position: relative;
+    width: 500px;
+    height: 500px;
+    margin-left: 50px;
+    font-size: 16px;
+    background-color: #FCFFFF;
+    color: #53575A;
+    margin-top: 20px;
+}
+
+.label-f {
+
+    display: inline-block;
+    width: 100px;
+}
+
+.input-f{
+    width: 300px;
+    height: 25px;
+    border: 1.5px solid #ccc;
+    border-radius: .25rem;
+    padding-left: 10px;
+    background-color: #FFF;
+
+}
+
+.form-group{
+    margin-bottom: 15px;
+    margin-left: 0px;
+}
+
+
+
+.button-f{
+    width: 75px;
+    height: 30px;
+    background-color: #fff;
+    border: 1.5px solid rgb(66, 135, 180);
+    color: rgb(66, 135, 180);
+    font-weight: bold;
+    border-radius: .25rem;
+    transform: translate(140%);
+}
+
+.button-f:hover{
+    border: 1.5px solid rgb(66, 135, 180);
+    color: #FFF;
+    background-color: rgb(66, 135, 180);
+}
+
+.button-f:active {
+    border: 2.5px solid rgb(59, 125, 168);
+}
+
+:focus{
+    outline: none;
+    border: 1.5px solid rgb(66, 135, 180);
+}
