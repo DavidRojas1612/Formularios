@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class DataComponent implements OnInit {
 
-  forma:FormGroup;
+  forma:any;
   margin:boolean = false;
   
   constructor(private fb:FormBuilder) { 

@@ -9,7 +9,7 @@ import { NgForm } from '@angular/forms';
 export class TemplateComponent  {
   
   nombre:string;
-  usuario:object ={
+  usuario ={
     nombre:null,
     apellido:null,
     correo:null,
